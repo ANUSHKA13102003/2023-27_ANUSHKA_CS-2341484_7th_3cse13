@@ -22,7 +22,26 @@ DEMO_RESUME = """Anushka\nB.Tech Computer Science\nData Science and Machine Lear
 st.set_page_config(page_title="AI Resume Screening", page_icon="📄", layout="wide")
 st.markdown("""<style>
 .block-container {padding-top: 2rem; padding-bottom: 2rem;}
-[data-testid="stMetric"] {background:#f7f9fc; border:1px solid #e5e7eb; padding:1rem; border-radius:12px;}
+[data-testid="stMetric"] {
+    background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.22);
+}
+[data-testid="stMetric"] > div {
+    background: transparent !important;
+}
+[data-testid="stMetric"] label {
+    color: #dbeafe !important;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+[data-testid="stMetric"] [data-testid="stMetricValue"] {
+    color: #f8fafc !important;
+    font-weight: 700;
+    font-size: 1.8rem !important;
+}
 </style>""", unsafe_allow_html=True)
 
 st.title("📄 AI Resume Screening & Job Match System")
