@@ -2,29 +2,59 @@
 import re
 
 SKILL_ALIASES = {
-    "Python": ["python"], "Java": ["java"], "C++": ["c++", "cpp"], "SQL": ["sql"],
-    "Excel": ["excel", "microsoft excel"], "Power BI": ["power bi", "powerbi"], "Tableau": ["tableau"],
-    "Pandas": ["pandas"], "NumPy": ["numpy", "num py"], "Scikit-learn": ["scikit-learn", "scikit learn", "sklearn"],
-    "TensorFlow": ["tensorflow"], "PyTorch": ["pytorch"], "Machine Learning": ["machine learning"],
-    "Deep Learning": ["deep learning"], "Data Science": ["data science"], "Data Analysis": ["data analysis", "data analytics"],
-    "NLP": ["nlp"], "Natural Language Processing": ["natural language processing"], "Computer Vision": ["computer vision"],
-    "AWS": ["aws", "amazon web services"], "Azure": ["azure"], "Git": ["git"], "GitHub": ["github"],
-    "Docker": ["docker"], "Statistics": ["statistics", "statistical"], "Matplotlib": ["matplotlib"],
-    "Seaborn": ["seaborn"], "Keras": ["keras"], "HTML": ["html"], "CSS": ["css"], "JavaScript": ["javascript"],
-    "React": ["react", "react.js"], "MongoDB": ["mongodb", "mongo db"], "MySQL": ["mysql"], "PostgreSQL": ["postgresql", "postgres"],
+    "Python": ["python", "python scripting"],
+    "Java": ["java"],
+    "C++": ["c++", "cpp"],
+    "SQL": ["sql", "sql querying", "sql query development", "sql queries", "sql query writing"],
+    "Excel": ["excel", "ms excel", "microsoft excel", "microsoft office excel"],
+    "Power BI": ["power bi", "powerbi", "power-bi"],
+    "Tableau": ["tableau"],
+    "Pandas": ["pandas"],
+    "NumPy": ["numpy", "num py", "num-py"],
+    "Scikit-learn": ["scikit-learn", "scikit learn", "sklearn"],
+    "TensorFlow": ["tensorflow"],
+    "PyTorch": ["pytorch"],
+    "Machine Learning": ["machine learning", "machine-learning", "ml"],
+    "Deep Learning": ["deep learning", "deep-learning"],
+    "Data Science": ["data science"],
+    "Data Analysis": ["data analysis", "exploratory data analysis", "eda", "data analytics"],
+    "Data Visualization": ["data visualization", "data visualisation"],
+    "Data Cleaning": ["data cleaning", "data cleansing"],
+    "Data Validation": ["data validation", "data quality validation"],
+    "NLP": ["nlp"],
+    "Natural Language Processing": ["natural language processing", "natural-language-processing"],
+    "Computer Vision": ["computer vision", "computer-vision"],
+    "AWS": ["aws", "amazon web services"],
+    "Azure": ["azure"],
+    "Git": ["git"],
+    "GitHub": ["github", "git hub"],
+    "Docker": ["docker"],
+    "Statistics": ["statistics", "statistical analysis", "statistical methods", "statistical methods and inference"],
+    "Matplotlib": ["matplotlib"],
+    "Seaborn": ["seaborn"],
+    "Keras": ["keras"],
+    "HTML": ["html"],
+    "CSS": ["css"],
+    "JavaScript": ["javascript", "js"],
+    "React": ["react", "react.js", "react js"],
+    "MongoDB": ["mongodb", "mongo db", "mongo-db"],
+    "MySQL": ["mysql", "my sql", "my-sql"],
+    "PostgreSQL": ["postgresql", "postgres", "postgre sql"],
 }
 
 
 def _normalize_alias(alias: str) -> str:
-    """Normalize punctuation so variants like 'machine-learning' behave like 'machine learning'."""
+    """Normalize punctuation, spacing, and common separator variants so they behave as a single skill token."""
     return re.sub(r"[^a-z0-9]+", " ", (alias or "").lower()).strip()
 
 
 def extract_skills(text: str) -> set[str]:
     """Return canonical skill names whose aliases occur as whole terms."""
     found = set()
-    lowered = (text or "").lower()
-    normalized_text = re.sub(r"[^a-z0-9]+", " ", lowered).strip()
+    if not text:
+        return found
+
+    normalized_text = re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
 
     for skill, aliases in SKILL_ALIASES.items():
         for alias in aliases:
