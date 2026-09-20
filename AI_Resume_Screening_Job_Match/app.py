@@ -46,7 +46,7 @@ st.markdown("""<style>
 
 st.title("📄 AI Resume Screening & Job Match System")
 st.caption("A transparent, local NLP dashboard for resume-to-job comparison")
-st.info("This university project uses TF-IDF and cosine similarity for text matching, plus explainable rule-based skill and role analysis.")
+st.info("AI-powered Resume–Job Matching using NLP — TF-IDF and cosine similarity provide transparent resume-to-job matching, with skill extraction and role analysis.")
 
 with st.sidebar:
     st.header("Analysis Settings")
