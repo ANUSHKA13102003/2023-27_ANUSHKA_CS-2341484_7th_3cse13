@@ -15,14 +15,24 @@ SKILL_ALIASES = {
 }
 
 
+def _normalize_alias(alias: str) -> str:
+    """Normalize punctuation so variants like 'machine-learning' behave like 'machine learning'."""
+    return re.sub(r"[^a-z0-9]+", " ", (alias or "").lower()).strip()
+
+
 def extract_skills(text: str) -> set[str]:
     """Return canonical skill names whose aliases occur as whole terms."""
     found = set()
     lowered = (text or "").lower()
+    normalized_text = re.sub(r"[^a-z0-9]+", " ", lowered).strip()
+
     for skill, aliases in SKILL_ALIASES.items():
         for alias in aliases:
-            pattern = r"(?<![a-z0-9])" + re.escape(alias) + r"(?![a-z0-9])"
-            if re.search(pattern, lowered):
+            alias_norm = _normalize_alias(alias)
+            if not alias_norm:
+                continue
+            pattern = r"(?<![a-z0-9])" + re.escape(alias_norm).replace(r"\ ", r"\s+") + r"(?![a-z0-9])"
+            if re.search(pattern, normalized_text):
                 found.add(skill)
                 break
     return found
