@@ -1,0 +1,24 @@
+SAMPLE / DEMONSTRATION RESUME — NOT REAL CANDIDATE DATA
+
+Anushka
+B.Tech Computer Science
+
+SUMMARY
+Computer Science student with demonstration experience in data science and machine learning projects.
+
+SKILLS
+Python, SQL, Pandas, NumPy, Machine Learning, Scikit-learn, Matplotlib, Git, Data Analysis
+
+PROJECTS
+- Student Performance Prediction: explored student data and built a predictive model.
+- Customer Churn Prediction: prepared customer data and evaluated classification results.
+- Sales Data Analysis: used Python, Pandas, SQL, and visual reports to identify trends.
+
+EXPERIENCE
+Data Science and Machine Learning Internship (demonstration experience)
+
+EDUCATION
+B.Tech Computer Science
+
+DISCLAIMER
+This file is sample/demo data for the university project. It must not be treated as an official resume or evidence of real qualifications.
